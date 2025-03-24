@@ -19,4 +19,10 @@ class TicketService{
         $ticket = Tickets::findOrFail($id);
         $ticket->update($data);
     }
+
+
+    public function deleteTicktst($id){
+        $ticket = Tickets::findOrFail($id);
+        return $ticket=delete();
+    }
 }
