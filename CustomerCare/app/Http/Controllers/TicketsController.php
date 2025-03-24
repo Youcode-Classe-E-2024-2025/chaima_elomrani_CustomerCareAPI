@@ -31,6 +31,7 @@ class TicketsController extends Controller
       return response()->json($ticket, 201);
     }
 
+
     /**
      * Display the specified resource.
      */
@@ -44,7 +45,7 @@ class TicketsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return response()->json($this->ticketService->update($id, $request->all()));
     }
 
     /**
