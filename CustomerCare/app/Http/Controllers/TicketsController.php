@@ -27,7 +27,8 @@ class TicketsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $ticket = $this->ticketService->createTicket($request->all());
+      return response()->json($ticket, 201);
     }
 
     /**
