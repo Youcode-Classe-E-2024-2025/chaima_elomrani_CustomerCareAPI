@@ -14,4 +14,9 @@ class TicketService{
     public function getAllTickets(){
         return Tickets::all();
     }
+
+    public function update($id , array $data){
+        $ticket = Tickets::findOrFail($id);
+        $ticket->update($data);
+    }
 }
