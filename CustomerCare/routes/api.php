@@ -1,8 +1,15 @@
 <?php
 
+use App\Http\Controllers\TicketsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// })->middleware('auth:sanctum');
+
+Route::get('/showTickets', [TicketsController::class, 'index']);
+Route::post('/storeTickets', [TicketsController::class, 'store']);
+Route::get('/show/{id}', [TicketsController::class, 'show']);
+Route::put('/update/{id}', [TicketsController::class, 'update']);
+Route::delete('/destroy/{id}', [TicketsController::class, 'destroy']);
