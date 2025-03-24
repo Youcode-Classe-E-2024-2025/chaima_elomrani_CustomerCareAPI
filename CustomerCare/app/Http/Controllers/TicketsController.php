@@ -53,6 +53,7 @@ class TicketsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->ticketService->deleteTicket($id);
+        return response()->json(null, 204);
     }
 }
