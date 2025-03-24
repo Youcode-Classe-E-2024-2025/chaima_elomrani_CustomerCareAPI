@@ -10,4 +10,8 @@ class TicketService{
         
         return Tickets::create($data);
     }
+
+    public function getAllTickets(){
+        return Tickets::all();
+    }
 }
