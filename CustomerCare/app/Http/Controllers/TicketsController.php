@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\TicketService;
 use Illuminate\Http\Request;
 
 class TicketsController extends Controller
 {
+
+    protected $ticketService;
+
+    public function __construct(TicketService $ticketService){
+        $this->ticketService = $ticketService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return response()->json($this->ticketService->getAllTickets());
     }
 
     /**
