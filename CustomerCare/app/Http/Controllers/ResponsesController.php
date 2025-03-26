@@ -35,7 +35,7 @@ class ResponsesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return response()->json($this->responseServices->getResponseById($id));
     }
 
     /**
@@ -43,7 +43,7 @@ class ResponsesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return response()->json($this->responseServices->update($id, $request->all()));
     }
 
     /**
@@ -51,6 +51,6 @@ class ResponsesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+    
     }
 }
