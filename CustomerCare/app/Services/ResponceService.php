@@ -10,5 +10,7 @@ class ResponceService
         return Responces::create($data);
     }
 
-    
+    public function getAllResponces(){
+        return Responces::all();
+    }
 }
