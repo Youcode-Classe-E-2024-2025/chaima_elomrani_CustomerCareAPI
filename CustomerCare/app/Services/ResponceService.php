@@ -21,6 +21,11 @@ class ResponceService
     public function update($id , array $data){
         $responce = Responces::findOrFail($id);
         $responce->update($data);
-    }       
+    }   
+    
+    public function deleteResponce($id){
+        $responce = Responces::findOrFail($id);
+        return $responce->delete();
+    }
 
 }
