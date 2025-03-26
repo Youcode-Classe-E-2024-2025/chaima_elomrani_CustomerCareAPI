@@ -27,6 +27,6 @@ class TicketService{
 
     public function deleteTicket($id){
         $ticket = Tickets::findOrFail($id);
-        return $ticket=delete();
+        return $ticket->delete();
     }
 }
