@@ -18,5 +18,9 @@ class ResponceService
         return Responces::findOrFail($id);
     }   
 
-    
+    public function update($id , array $data){
+        $responce = Responces::findOrFail($id);
+        $responce->update($data);
+    }       
+
 }
