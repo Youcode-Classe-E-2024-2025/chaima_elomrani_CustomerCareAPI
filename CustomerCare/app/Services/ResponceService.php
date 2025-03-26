@@ -13,4 +13,10 @@ class ResponceService
     public function getAllResponces(){
         return Responces::all();
     }
+
+    public function getResponceById($id){
+        return Responces::findOrFail($id);
+    }   
+
+    
 }
