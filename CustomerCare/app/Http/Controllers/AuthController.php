@@ -21,4 +21,21 @@ class AuthController extends Controller
   public function register(Request $request){
     return $this->authService->register($request);
   }
+
+
+  public function login(Request $request){
+
+    $request->only(['email', 'password']);
+
+    if($this->authService->login($request)){
+        return redirect()->route('dashboard');
+    }
+    return redirect()->back()->withErrors(['email, password' => 'Invalid credentials']);
+  }
+
+
+ 
+  
 } 
+
+
