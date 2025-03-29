@@ -23,7 +23,7 @@ Route::delete('/destroy/{id}', [TicketsController::class, 'destroy']);
 // responses CRUD 
 Route::get('/showResponse', [ResponsesController::class, 'index']);
 Route::post('/storeResponse', [ResponsesController::class, 'store']);
-Route::get('/showResponse/{id}', [ResponsesController::class, 'show']);
+Route::get('/showResponseId/{id}', [ResponsesController::class, 'show']);
 Route::put('/updateResponse/{id}', [ResponsesController::class, 'update']);
 Route::delete('/destroyResponse/{id}', [ResponsesController::class, 'destroy']);
 

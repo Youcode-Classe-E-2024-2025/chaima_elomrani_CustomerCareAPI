@@ -16,7 +16,7 @@ class ResponsesController extends Controller
 
        /**
      * @OA\Get(
-     *     path="/api/responses",
+     *     path="/api/showResponse",
      *     summary="Display a listing of responses",
      *     tags={"responses"},
      *     @OA\Response(response="200", description="Display a listing of responses")
@@ -34,7 +34,7 @@ class ResponsesController extends Controller
 
        /**
      * @OA\Post(
-     *     path="/api/responses",
+     *     path="/api/storeResponse",
      *     summary="Store a newly created response",
      *     tags={"responses"},
      *     @OA\RequestBody(
@@ -61,7 +61,7 @@ class ResponsesController extends Controller
 
        /**
      * @OA\Get(
-     *     path="/api/responses/{id}",
+     *     path="/api/showResponseId/{id}",
      *     summary="Display the specified response",
      *     tags={"responses"},
      *     @OA\Parameter(
@@ -85,7 +85,7 @@ class ResponsesController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/responses/{id}",
+     *     path="/api/updateResponse/{id}",
      *     summary="Update the specified response",
      *     tags={"responses"},
      *     @OA\Parameter(
@@ -115,7 +115,7 @@ class ResponsesController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/responses/{id}",
+     *     path="/api/destroyResponse/{id}",
      *     summary="Remove the specified response",
      *     tags={"responses"},
      *     @OA\Parameter(
