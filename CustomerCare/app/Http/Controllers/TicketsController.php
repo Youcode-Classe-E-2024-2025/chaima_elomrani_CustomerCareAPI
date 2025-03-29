@@ -5,14 +5,27 @@ namespace App\Http\Controllers;
 use App\Services\TicketService;
 use Illuminate\Http\Request;
 
-
 /**
+ * @OA\PathItem(
+ *     path="/api"
+ * )
  * @OA\Tag(
  *     name="Tickets",
  *     description="API Endpoints for managing tickets"
  * )
+ * 
+ * @OA\Schema(
+ *     schema="Ticket",
+ *     required={"title", "description"},
+ *     @OA\Property(property="id", type="integer", format="int64"),
+ *     @OA\Property(property="title", type="string"),
+ *     @OA\Property(property="description", type="string"),
+ *     @OA\Property(property="status", type="string"),
+ *     @OA\Property(property="created_at", type="string", format="date-time"),
+ *     @OA\Property(property="updated_at", type="string", format="date-time")
+ * )
  */
-   class TicketsController extends Controller {
+class TicketsController extends Controller {
 
     protected $ticketService;
 
@@ -23,7 +36,7 @@ use Illuminate\Http\Request;
 
     /**
      * @OA\Get(
-     *     path="/api/tickets",
+     *     path="/api/showTickets",
      *     summary="Get all tickets",
      *     tags={"Tickets"},
      *     @OA\Response(
@@ -33,19 +46,14 @@ use Illuminate\Http\Request;
      *     )
      * )
      */
-
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return response()->json($this->ticketService->getAllTickets());
     }
 
-
-     /**
+    /**
      * @OA\Post(
-     *     path="/api/tickets",
+     *     path="/api/storeTickets",
      *     summary="Create a new ticket",
      *     tags={"Tickets"},
      *     @OA\RequestBody(
@@ -59,19 +67,15 @@ use Illuminate\Http\Request;
      *     )
      * )
      */
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $ticket = $this->ticketService->createTicket($request->all());
         return response()->json($ticket, 201);
     }
 
-      /**
+    /**
      * @OA\Get(
-     *     path="/api/tickets/{id}",
+     *     path="/api/show/{id}",
      *     summary="Get a specific ticket by ID",
      *     tags={"Tickets"},
      *     @OA\Parameter(
@@ -91,20 +95,14 @@ use Illuminate\Http\Request;
      *     )
      * )
      */
-
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         return response()->json($this->ticketService->getTickeById($id));
     }
 
-
-     /**
+    /**
      * @OA\Put(
-     *     path="/api/tickets/{id}",
+     *     path="/api/update/{id}",
      *     summary="Update an existing ticket",
      *     tags={"Tickets"},
      *     @OA\Parameter(
@@ -128,20 +126,14 @@ use Illuminate\Http\Request;
      *     )
      * )
      */
-
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         return response()->json($this->ticketService->update($id, $request->all()));
     }
 
-
-     /**
+    /**
      * @OA\Delete(
-     *     path="/api/tickets/{id}",
+     *     path="/api/destroy/{id}",
      *     summary="Delete a ticket",
      *     tags={"Tickets"},
      *     @OA\Parameter(
@@ -159,11 +151,6 @@ use Illuminate\Http\Request;
      *         description="Ticket not found"
      *     )
      * )
-     */
-    
-
-    /**
-     * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {

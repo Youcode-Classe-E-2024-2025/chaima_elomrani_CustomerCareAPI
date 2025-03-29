@@ -13,6 +13,17 @@ class ResponsesController extends Controller
     public function __construct(ResponseService $responseServices){
         $this->responseServices = $responseServices;
     }
+
+       /**
+     * @OA\Get(
+     *     path="/api/responses",
+     *     summary="Display a listing of responses",
+     *     tags={"responses"},
+     *     @OA\Response(response="200", description="Display a listing of responses")
+     * )
+     */
+
+
     /**
      * Display a listing of the resource.
      */
@@ -20,6 +31,24 @@ class ResponsesController extends Controller
     {
         return response()->json($this->responseServices->getAllResponses());
     }
+
+       /**
+     * @OA\Post(
+     *     path="/api/responses",
+     *     summary="Store a newly created response",
+     *     tags={"responses"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"content", "author"},
+     *             @OA\Property(property="content", type="string"),
+     *             @OA\Property(property="author", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(response="201", description="Response created successfully")
+     * )
+     */   
+
 
     /**
      * Store a newly created resource in storage.
@@ -30,6 +59,22 @@ class ResponsesController extends Controller
         return response()->json($response, 201);
     }
 
+       /**
+     * @OA\Get(
+     *     path="/api/responses/{id}",
+     *     summary="Display the specified response",
+     *     tags={"responses"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="200", description="Display the specified response")
+     * )
+     */
+
+
     /**
      * Display the specified resource.
      */
@@ -39,12 +84,49 @@ class ResponsesController extends Controller
     }
 
     /**
+     * @OA\Put(
+     *     path="/api/responses/{id}",
+     *     summary="Update the specified response",
+     *     tags={"responses"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="content", type="string"),
+     *             @OA\Property(property="author", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="Response updated successfully")
+     * )
+     */
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
         return response()->json($this->responseServices->update($id, $request->all()));
     }
+
+    /**
+     * @OA\Delete(
+     *     path="/api/responses/{id}",
+     *     summary="Remove the specified response",
+     *     tags={"responses"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="204", description="Response deleted successfully")
+     * )
+     */
 
     /**
      * Remove the specified resource from storage.

@@ -8,7 +8,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use App\Services\AuthService;
 
-
+/**
+ * @OA\Tag(
+ *     name="Authentication",
+ *     description="API Endpoints for user authentication"
+ * )
+ */
 class AuthController extends Controller
 {
     private $authService;
@@ -53,5 +58,3 @@ class AuthController extends Controller
     }
 
 }
-
-
