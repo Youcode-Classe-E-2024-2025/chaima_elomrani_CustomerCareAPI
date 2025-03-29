@@ -7,6 +7,166 @@
     },
     "paths": {
         "/api": {},
+        "/api/showResponse": {
+            "get": {
+                "tags": [
+                    "Responses"
+                ],
+                "summary": "Get all responses",
+                "operationId": "797ad18dd9ab322ef87d13ada57a5235",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Response"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/storeResponse": {
+            "post": {
+                "tags": [
+                    "Responses"
+                ],
+                "summary": "Create a new response",
+                "operationId": "755fc2357897950ff9db1c2c407dab9d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Response"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Response created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/showResponseId/{id}": {
+            "get": {
+                "tags": [
+                    "Responses"
+                ],
+                "summary": "Get a specific response by ID",
+                "operationId": "9515e334073e0b790eee796f3715acae",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Response not found"
+                    }
+                }
+            }
+        },
+        "/api/updateResponse/{id}": {
+            "put": {
+                "tags": [
+                    "Responses"
+                ],
+                "summary": "Update an existing response",
+                "operationId": "b5ab6a54b1bc5097ae7aa4d1b39ccb85",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Response"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Response not found"
+                    }
+                }
+            }
+        },
+        "/api/destroyResponse/{id}": {
+            "delete": {
+                "tags": [
+                    "Responses"
+                ],
+                "summary": "Delete a response",
+                "operationId": "500ac74a501fd5d8e839be7563fedc76",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Response deleted successfully"
+                    },
+                    "404": {
+                        "description": "Response not found"
+                    }
+                }
+            }
+        },
         "/api/showTickets": {
             "get": {
                 "tags": [
@@ -170,6 +330,36 @@
     },
     "components": {
         "schemas": {
+            "Response": {
+                "required": [
+                    "content",
+                    "ticket_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "ticket_id": {
+                        "type": "integer"
+                    },
+                    "user_id": {
+                        "type": "integer"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
             "Ticket": {
                 "required": [
                     "title",
@@ -203,6 +393,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Responses",
+            "description": "API Endpoints for managing responses to tickets"
+        },
         {
             "name": "Tickets",
             "description": "API Endpoints for managing tickets"
